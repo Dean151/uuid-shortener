@@ -1,0 +1,22 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Swift
+
+on: [push]
+
+jobs:
+  build:
+    name: Swift on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: swift build -v
+      - name: Run tests
+        run: swift test -v
